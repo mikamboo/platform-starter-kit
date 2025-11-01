@@ -1,0 +1,5 @@
+image:
+  # -- Repository for the Crossplane pod image.
+  repository: xpkg.crossplane.io/crossplane/crossplane
+  # -- The Crossplane image tag. Defaults to the value of `appVersion` in `Chart.yaml`.
+  tag: "v2.0.2"

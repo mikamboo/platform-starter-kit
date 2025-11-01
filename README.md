@@ -21,6 +21,16 @@ helm upgrade --install argocd argo/argo-cd \
   --create-namespace
 ```
 
+### Create repo secret
+
+Private repositories require authentication. Create them using kubectl.
+
+```yaml
+
+```bash
+kubectl apply -f argocd/creds/repo-secret.yaml
+```
+
 ### Install ArgoCD root application
 
 ```bash
