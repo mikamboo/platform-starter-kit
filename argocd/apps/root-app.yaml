@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/aia-ops/platform-starter-kit.git
+    repoURL: https://github.com/mikamboo/platform-starter-kit.git
     targetRevision: main
     path: argocd/apps
   destination:
