@@ -8,3 +8,14 @@ metadata:
 stringData:
   type: git
   url: https://github.com/mikamboo/platform-starter-kit.git
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-crossplane-stable
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: helm
+  url: https://charts.crossplane.io/stable
