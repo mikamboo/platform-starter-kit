@@ -6,11 +6,12 @@ metadata:
 spec:
   project: default
   source:
+    chart: crossplane-stable/crossplane
+    repoURL: https://charts.crossplane.io/stable
+    targetRevision: main
     helm:
-      chart: crossplane-stable/crossplane
       releaseName: crossplane
-      repoURL: https://charts.crossplane.io/stable
-      targetRevision: 2.0.2
+      version: 2.0.2
       valueFiles:
         - helm/crossplane/values.yaml
   destination:
