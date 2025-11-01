@@ -26,11 +26,11 @@ helm upgrade --install argocd argo/argo-cd \
 App require repositories to be configured, so create a secret for the GitHub repository.
 
 ```bash
-kubectl apply -f argocd/settings/repo-secrets.yaml
+kubectl apply -f argocd/repositories.yaml
 ```
 
 ### Install ArgoCD root application
 
 ```bash
-kubectl apply -f argocd/apps/root-app.yaml
+kubectl apply -f argocd/root-app.yaml
 ```

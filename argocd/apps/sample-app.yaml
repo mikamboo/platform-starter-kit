@@ -1,0 +1,13 @@
+---
+# Sample pod manifest
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-app
+  namespace: default
+spec:
+  containers:
+  - name: sample-app-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
