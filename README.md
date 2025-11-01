@@ -1,9 +1,10 @@
+## GitOps Platform with Argo + Crossplane
+
 Platform Engineering Starter Kit Series: GitOps Bootstrap with Argo CD (3)
 
-https://jiminbyun.medium.com/platform-engineering-starter-kit-series-gitops-bootstrap-with-argo-cd-3-656db9ebec95
+* https://jiminbyun.medium.com/platform-engineering-starter-kit-series-gitops-bootstrap-with-argo-cd-3-656db9ebec95
 
-
-Prepare helm repositories
+Prepare helm
 
 ```bash
 helm repo add crossplane-stable https://charts.crossplane.io/stable
@@ -21,9 +22,19 @@ helm upgrade --install argocd argo/argo-cd \
   --create-namespace
 ```
 
-### Create repo secret
+### Install crossplane
 
-App require repositories to be configured, so create a secret for the GitHub repository.
+```bash
+helm upgrade --install crossplane crossplane-stable/crossplane \
+  --namespace crossplane-system \
+  --version 2.0.2 \
+  -f helm/crossplane/values.yaml \
+  --create-namespace
+```
+
+### Create repo secret (private repository access)
+
+When App of Apps pattern is used, ArgoCD needs to access the Git repository where the application manifests are stored. Create a secret that contains the repository credentials.
 
 ```bash
 kubectl apply -f argocd/repositories.yaml
