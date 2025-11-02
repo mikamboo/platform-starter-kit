@@ -50,7 +50,9 @@ kubectl apply -f argocd/root-app.yaml
 
 - [x] Let ArgoCD manage itself
 - [x] Install Crossplane via ArgoCD
-- [ ] Create root app Helm chart
+- [-] Create root app Helm chart
+- [ ] Add observability stack (Prometheus + Grafana + Loki) via ArgoCD
+- [ ] Create EKS cluster and deploy the kit
 - [ ] Put all apps as root app chart templates
 - [ ] Setup Crossplane provider for AWS
 - [ ] Setup SSO login for ArgoCD
