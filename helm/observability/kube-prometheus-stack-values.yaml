@@ -25,6 +25,7 @@ prometheus:
 
 # Alertmanager configuration
 alertmanager:
+  enabled: false
   alertmanagerSpec:
     storage:
       volumeClaimTemplate:
