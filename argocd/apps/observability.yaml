@@ -14,7 +14,7 @@ spec:
         valueFiles:
           - $values/helm/observability/kube-prometheus-stack-values.yaml
     - repoURL: https://github.com/mikamboo/platform-starter-kit.git
-      targetRevision: main
+      targetRevision: HEAD
       ref: values
   destination:
     server: https://kubernetes.default.svc
@@ -43,7 +43,7 @@ spec:
         valueFiles:
           - $values/helm/observability/loki-values.yaml
     - repoURL: https://github.com/mikamboo/platform-starter-kit.git
-      targetRevision: main
+      targetRevision: HEAD
       ref: values
   destination:
     server: https://kubernetes.default.svc
