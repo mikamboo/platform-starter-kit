@@ -7,7 +7,8 @@ metadata:
   namespace: default
 spec:
   containers:
-  - name: sample-app-container
-    image: nginx:latest
-    ports:
-    - containerPort: 80
+    - image: public.ecr.aws/l6m2t8p7/docker-2048:latest
+      imagePullPolicy: Always
+      name: app-2048
+      ports:
+      - containerPort: 80
