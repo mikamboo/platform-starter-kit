@@ -5,11 +5,15 @@ kind: Application
 metadata:
   name: root-app
   namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io  # Prevents accidental deletion
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"        # Deploy root app first
 spec:
   project: default
   source:
     repoURL: https://github.com/mikamboo/platform-starter-kit.git
-    targetRevision: main
+    targetRevision: HEAD
     path: argocd/apps
   destination:
     server: https://kubernetes.default.svc
@@ -18,3 +22,11 @@ spec:
     automated:
       prune: true
       selfHeal: true
+  syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+  info:
+    - name: 'Description'
+      value: 'Platform starter kit root application managing all child apps'
+  revisionHistoryLimit: 20

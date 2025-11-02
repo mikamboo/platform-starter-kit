@@ -45,3 +45,12 @@ kubectl apply -f argocd/repositories.yaml
 ```bash
 kubectl apply -f argocd/root-app.yaml
 ```
+
+### TODO
+
+- [x] Let ArgoCD manage itself
+- [x] Install Crossplane via ArgoCD
+- [ ] Create root app Helm chart
+- [ ] Put all apps as root app chart templates
+- [ ] Setup Crossplane provider for AWS
+- [ ] Setup SSO login for ArgoCD

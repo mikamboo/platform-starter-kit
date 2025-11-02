@@ -1,0 +1,30 @@
+
+# Let Argo CD manage itself
+# To achieve this, we need to create an Application manifest that points 
+# to our "manually" installed Argo CD chart.
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - chart: argo-cd
+      repoURL: https://argoproj.github.io/argo-helm
+      targetRevision: 8.2.1
+      helm:
+        releaseName: argocd
+        valueFiles:
+          - $values/helm/argocd/values.yaml
+    - repoURL: https://github.com/mikamboo/platform-starter-kit.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

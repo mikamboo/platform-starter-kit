@@ -19,3 +19,25 @@ metadata:
 stringData:
   type: helm
   url: https://charts.crossplane.io/stable
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-prometheus-community
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: helm
+  url: https://prometheus-community.github.io/helm-charts
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: helm-grafana
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  type: helm
+  url: https://grafana.github.io/helm-charts

@@ -1,0 +1,47 @@
+# Kube Prometheus Stack Values
+# This chart installs Prometheus, Grafana, and Alertmanager
+
+# Grafana configuration
+grafana:
+  enabled: true
+  adminPassword: "admin"
+  ingress:
+    enabled: false
+  persistence:
+    enabled: true
+    size: 10Gi
+
+# Prometheus configuration
+prometheus:
+  prometheusSpec:
+    retention: 10d
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
+# Alertmanager configuration
+alertmanager:
+  alertmanagerSpec:
+    storage:
+      volumeClaimTemplate:
+        spec:
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+
+# Enable service monitors for common services
+kubeApiServer:
+  enabled: true
+kubeControllerManager:
+  enabled: true
+kubeScheduler:
+  enabled: true
+kubeProxy:
+  enabled: true
+kubelet:
+  enabled: true
