@@ -27,50 +27,21 @@ spec:
       - CreateNamespace=true
       - ServerSideApply=true
 ---
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: grafana-loki
-  namespace: argocd
-spec:
-  project: default
-  sources:
-    - chart: loki
-      repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 6.45.2
-      helm:
-        releaseName: grafana-loki
-        valueFiles:
-          - $values/helm/observability/grafana-loki-values.yaml
-    - repoURL: https://github.com/mikamboo/platform-starter-kit.git
-      targetRevision: HEAD
-      ref: values
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring-system
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
----
 # apiVersion: argoproj.io/v1alpha1
 # kind: Application
 # metadata:
-#   name: grafana-alloy
+#   name: grafana-loki
 #   namespace: argocd
 # spec:
 #   project: default
 #   sources:
-#     - chart: alloy
+#     - chart: loki
 #       repoURL: https://grafana.github.io/helm-charts
 #       targetRevision: 6.45.2
 #       helm:
-#         releaseName: grafana-alloy
+#         releaseName: grafana-loki
 #         valueFiles:
-#           - $values/helm/observability/grafana-alloy-values.yaml
+#           - $values/helm/observability/grafana-loki-values.yaml
 #     - repoURL: https://github.com/mikamboo/platform-starter-kit.git
 #       targetRevision: HEAD
 #       ref: values
@@ -84,3 +55,32 @@ spec:
 #     syncOptions:
 #       - CreateNamespace=true
 #       - ServerSideApply=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: grafana-alloy
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - chart: alloy
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 6.45.2
+      helm:
+        releaseName: grafana-alloy
+        valueFiles:
+          - $values/helm/observability/grafana-alloy-values.yaml
+    - repoURL: https://github.com/mikamboo/platform-starter-kit.git
+      targetRevision: HEAD
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
