@@ -1,0 +1,13 @@
+base:
+  repoURL: https://github.com/mikamboo/platform-starter-kit.git
+
+apps:
+  crossplane:
+    enabled: false
+  observability:
+    grafana-alloy:
+      enabled: true
+    grafana-loki:
+      enabled: false
+    kube-prometheus-stack:
+      enabled: true

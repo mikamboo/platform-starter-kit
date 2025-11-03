@@ -12,7 +12,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/mikamboo/platform-starter-kit.git
+    repoURL: {{ .Values.base.repoURL }}
     targetRevision: HEAD
     path: argocd/apps
   destination:

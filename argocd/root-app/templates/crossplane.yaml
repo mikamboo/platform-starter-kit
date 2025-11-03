@@ -13,7 +13,7 @@ spec:
         releaseName: crossplane
         valueFiles:
           - $values/helm/crossplane/values.yaml
-    - repoURL: https://github.com/mikamboo/platform-starter-kit.git
+    - repoURL: {{ .Values.base.repoURL }}
       targetRevision: main
       ref: values
   destination:

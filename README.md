@@ -12,23 +12,13 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
 ```
 
-### Install argocd
+### Bootstrap argocd installation
 
 ```bash
 helm upgrade --install argocd argo/argo-cd \
   --namespace argocd \
   --version 8.2.1 \
   -f helm/argocd/values.yaml \
-  --create-namespace
-```
-
-### Install crossplane
-
-```bash
-helm upgrade --install crossplane crossplane-stable/crossplane \
-  --namespace crossplane-system \
-  --version 2.0.2 \
-  -f helm/crossplane/values.yaml \
   --create-namespace
 ```
 
