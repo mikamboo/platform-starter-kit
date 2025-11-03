@@ -30,7 +30,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: loki
+  name: grafana-loki
   namespace: argocd
 spec:
   project: default
@@ -39,9 +39,9 @@ spec:
       repoURL: https://grafana.github.io/helm-charts
       targetRevision: 6.45.2
       helm:
-        releaseName: loki
+        releaseName: grafana-loki
         valueFiles:
-          - $values/helm/observability/loki-values.yaml
+          - $values/helm/observability/grafana-loki-values.yaml
     - repoURL: https://github.com/mikamboo/platform-starter-kit.git
       targetRevision: HEAD
       ref: values
