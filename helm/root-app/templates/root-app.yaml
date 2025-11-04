@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: {{ .Values.base.repoURL }}
     targetRevision: HEAD
-    path: helm/root-app/templates
+    path: helm/root-app/
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -28,5 +28,5 @@ spec:
     - PruneLast=true
   info:
     - name: 'Description'
-      value: 'Platform starter kit root application managing all child apps'
+      value: 'Platform root application managing all child apps'
   revisionHistoryLimit: 20
