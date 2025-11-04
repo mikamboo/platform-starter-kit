@@ -18,7 +18,7 @@ Installation steps:
 
 ```bash
 # 1. Install ArgoCD first
-helm install argo-cd helm/argocd \
+helm install argo helm/argocd \
   --namespace argocd \
   --create-namespace \
   --values helm/argocd/values.yaml
@@ -33,6 +33,16 @@ kubectl apply -f helm/root-app/templates/repositories.yaml
 
 # 4. Finally create the ArgoCD root app
 kubectl apply -f helm/root-app/templates/root-app.yaml
+```
+
+### Access ArgoCD UI
+
+```bash
+# Port-forward ArgoCD server to localhost
+kubectl port-forward svc/argo-argocd-server -n argocd 8080:443
+
+# Get initial admin password
+kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d; echo
 ```
 
 ### TODO
