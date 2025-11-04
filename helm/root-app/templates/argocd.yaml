@@ -12,7 +12,7 @@ spec:
   sources:
     - repoURL: {{ .Values.base.repoURL }}
       targetRevision: HEAD
-      path: helm/argocd/
+      path: helm/argocd/ # N
     # - chart: argo-cd
     #   repoURL: https://argoproj.github.io/argo-helm
     #   targetRevision: 8.2.1
@@ -20,9 +20,9 @@ spec:
         releaseName: argo
         valueFiles:
           - $values/helm/argocd/values.yaml
-    # - repoURL: {{ .Values.base.repoURL }}
-    #   targetRevision: main
-    #   ref: values
+    - repoURL: {{ .Values.base.repoURL }}
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

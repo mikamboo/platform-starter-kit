@@ -48,6 +48,16 @@ kubectl port-forward svc/argo-argocd-server -n argocd 8080:443
 kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 -d; echo
 ```
 
+### Troubleshooting
+
+* Double ArgoCD pod instances (argo-xxx and argocd-xxx)?
+
+  ```bash
+  kubectl get apps -n argocd
+  kubectl get pods -n argocd
+  ```
+  FIX: Ensure bootstrap installed and root-app managed argo are using the same release name (e.g., `argo`).
+
 ### TODO
 
 - [x] Let ArgoCD manage itself
