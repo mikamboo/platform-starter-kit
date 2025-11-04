@@ -11,3 +11,10 @@ server:
 configs:
   params:
     server.insecure: true  # For local/dev use only
+
+dex:
+  enabled: false
+notifications:
+  enabled: false
+applicationSet:
+    enabled: false

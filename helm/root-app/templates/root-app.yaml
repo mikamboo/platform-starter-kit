@@ -14,7 +14,7 @@ spec:
   source:
     repoURL: {{ .Values.base.repoURL }}
     targetRevision: HEAD
-    path: argocd/root-app/templates
+    path: helm/root-app/templates
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

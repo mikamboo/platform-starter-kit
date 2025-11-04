@@ -7,34 +7,35 @@ Platform Engineering Starter Kit Series: GitOps Bootstrap with Argo CD (3)
 Prepare helm
 
 ```bash
-helm repo add crossplane-stable https://charts.crossplane.io/stable
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
 ```
 
 ### Bootstrap argocd installation
 
+Download chart locally then install with custom values.yaml
+
+
 ```bash
-helm upgrade --install argocd argo/argo-cd \
+
+# 1. Install ArgoCD first
+helm install argo-cd helm/argocd \
   --namespace argocd \
-  --version 8.2.1 \
-  -f helm/argocd/values.yaml \
-  --create-namespace
+  --create-namespace \
+  --values helm/argocd/values.yaml
+
+# 2. Wait for ArgoCD to be ready
+kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argocd-server -n argocd --timeout=300s
+
+# 3. Create repository secrets BEFORE root app
+# ArgoCD apps need to access the Git repo where the application manifests are stored. 
+# We need to create argocd typed secrets that contains the repository credentials.
+kubectl apply -f helm/root-app/templates/repositories.yaml
+
+# 4. Finally create the ArgoCD root app
+kubectl apply -f helm/root-app/templates/root-app.yaml
 ```
 
-### Create repo secret (private repository access)
-
-When App of Apps pattern is used, ArgoCD needs to access the Git repository where the application manifests are stored. Create a secret that contains the repository credentials.
-
-```bash
-kubectl apply -f argocd/repositories.yaml
-```
-
-### Install ArgoCD root application
-
-```bash
-kubectl apply -f argocd/root-app.yaml
-```
 
 ### TODO
 
