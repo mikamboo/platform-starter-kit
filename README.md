@@ -18,10 +18,12 @@ Installation steps:
 
 ```bash
 # 1. Install ArgoCD first
-helm install argo helm/argocd \
-  --namespace argocd \
-  --create-namespace \
-  --values helm/argocd/values.yaml
+# helm install argo helm/argocd \
+#   --namespace argocd \
+#   --create-namespace \
+#   --values helm/argocd/values.yaml
+kubectl create namespace argocd
+helm template argo helm/argocd -n argocd --values helm/argocd/values.yaml | kubectl apply -f -
 
 # 2. Wait for ArgoCD to be ready
 kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argocd-server -n argocd --timeout=300s
@@ -32,7 +34,8 @@ kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argocd-server -
 kubectl apply -f helm/root-app/templates/repositories.yaml
 
 # 4. Finally create the ArgoCD root app
-kubectl apply -f helm/root-app/templates/root-app.yaml
+#kubectl apply -f helm/root-app/templates/root-app.yaml
+helm template helm/root-app -n argocd | kubectl apply -f -
 ```
 
 ### Access ArgoCD UI

@@ -16,10 +16,10 @@ spec:
     # - chart: argo-cd
     #   repoURL: https://argoproj.github.io/argo-helm
     #   targetRevision: 8.2.1
-    #   helm:
-    #     releaseName: argocd
-    #     valueFiles:
-    #       - $values/helm/argocd/values.yaml
+      helm:
+        releaseName: argo
+        valueFiles:
+          - $values/helm/argocd/values.yaml
     # - repoURL: {{ .Values.base.repoURL }}
     #   targetRevision: main
     #   ref: values
